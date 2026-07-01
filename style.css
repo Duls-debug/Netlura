@@ -1,0 +1,464 @@
+/* ======================== CORES COM CSS VARIABLES ======================== */
+
+/* Tema Dark (padrão) */
+:root,
+:root[data-theme="dark"] {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --border-color: #ffffff;
+    --hover-bg: #1a1a1a;
+}
+
+/* Tema Light */
+:root[data-theme="light"] {
+    --bg-color: #fdfdfd;
+    --text-color: #000000;
+    --border-color: #797171;
+    --hover-bg: #ffffff;
+    
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    /* Remove margens padrão de todos os elementos */
+    padding: 0;
+    /* Remove preenchimentos padrão de todos os elementos */
+    box-sizing: border-box;
+    /* Inclui padding e border no cálculo da largura/altura */
+}
+
+/* Corpo da página */
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    /* Define a família de fontes, priorizando Helvetica */
+    background-color: var(--bg-color);
+    /* Usa cor de fundo baseada no tema */
+    color: var(--text-color);
+    /* Usa cor do texto baseada no tema */
+    min-height: 100vh;
+    /* Define altura mínima como 100% da altura da viewport */
+    display: flex;
+    /* Usa flexbox para layout */
+    justify-content: center;
+    /* Centraliza horizontalmente o conteúdo */
+    align-items: center;
+    /* Centraliza verticalmente o conteúdo */
+    overflow-x: hidden;
+    /* Esconde overflow horizontal */
+    padding: 1rem;
+    /* Adiciona padding responsivo */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Transição suave entre temas */
+    flex-direction: column;
+    /* Posiciona itens em coluna para o botão ficar no topo */
+}
+
+/* Container principal */
+main {
+    text-align: center;
+    /* Centraliza o texto horizontalmente */
+    max-width: 800px;
+    /* Define a largura máxima */
+    padding: clamp(1rem, 5vw, 3rem);
+    /* Padding responsivo entre 1rem e 3rem */
+    width: 100%;
+    /* Garante ocupação total de largura disponível */
+}
+
+/* Título */
+h1 {
+    font-size: clamp(1.5rem, 8vw, 3rem);
+    /* Tamanho responsivo de 1.5rem até 3rem */
+    margin-bottom: clamp(1.5rem, 5vw, 3rem);
+    /* Margem responsiva */
+    font-weight: 400;
+    /* Define o peso da fonte */
+}
+
+/* Lista de perfis */
+.profiles-wrapper,
+.profiles {
+    list-style: none; /* Remove os marcadores da lista */
+    margin: 0; /* Remove margem padrão */
+    padding: 0; /* Remove padding padrão */
+}
+
+.profiles {
+    display: flex;
+    /* Usa flexbox para layout */
+    justify-content: center;
+    /* Centraliza os itens horizontalmente */
+    gap: clamp(0.75rem, 3vw, 2rem);
+    /* Gap responsivo */
+    flex-wrap: wrap;
+    /* Permite que os itens quebrem para a próxima linha */
+}
+
+/* Item do perfil */
+.profile {
+    display: flex;
+    /* Usa flexbox para layout */
+    flex-direction: column;
+    /* Organiza os itens em coluna */
+    align-items: center;
+    /* Centraliza os itens verticalmente */
+    cursor: pointer;
+    /* Muda o cursor para pointer ao passar o mouse */
+    transition: transform 0.2s ease;
+    /* Adiciona transição suave para transformações */
+}
+
+.profile:hover {
+    transform: scale(1.08);
+    /* Aumenta ligeiramente o tamanho ao passar o mouse */
+}
+
+/* Imagem do perfil */
+.profile img {
+    width: clamp(70px, 20vw, 150px);
+    /* Largura responsiva */
+    height: clamp(70px, 20vw, 150px);
+    /* Altura responsiva */
+    border-radius: 5%;
+    /* Torna a imagem circular */
+    object-fit: cover;
+    /* Cobre a área sem distorcer */
+    border: 3px solid transparent;
+    /* Adiciona borda transparente */
+    transition: border-color 0.3s ease;
+    /* Adiciona transição suave para a cor da borda */
+}
+
+.profile img:hover {
+    border: 3px solid #f9f8f8;
+    /* Muda a borda para branca ao passar o mouse */
+}
+
+:root[data-theme="light"] .profile img:hover {
+    border: 3px solid red;
+}
+
+/* Legenda do perfil */
+.profile figcaption {
+    margin-top: clamp(0.5rem, 2vw, 1rem);
+    /* Margem responsiva */
+    font-size: clamp(0.8rem, 4vw, 1.2rem);
+    /* Tamanho de fonte responsivo */
+    font-weight: 300;
+    color: var(--text-color);
+    /* Usa cor do texto baseada no tema */
+}
+
+/* Link do perfil */
+.profile-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Botão de Toggle de Tema */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    border: 0px solid var(--text-color);
+    background-color: transparent;
+    color: var(--text-color);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1) rotate(20deg);
+}
+
+/* ======================== RESPONSIVIDADE ======================== */
+
+/* Mobile Extra Pequeno - 320px a 480px */
+@media (max-width: 480px) {
+    .theme-toggle {
+        top: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    body {
+        height: auto;
+        /* Permite altura automática em mobile */
+        min-height: 100vh;
+        /* Garante altura mínima da viewport */
+        padding: 20px 0;
+        /* Adiciona padding vertical */
+    }
+
+    main {
+        max-width: 100%;
+        /* Usa toda a largura disponível */
+        padding: 20px 15px;
+        /* Reduz padding lateral em telas muito pequenas */
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        /* Tamanho reduzido para telas muito pequenas */
+        margin-bottom: 1.5rem;
+        /* Reduz margem inferior */
+        font-weight: 700;
+        /* Aumenta peso para melhor legibilidade */
+    }
+
+    .profiles {
+        gap: 0.75rem;
+        /* Reduz espaço entre perfis */
+        flex-direction: row;
+        /* Mantém em linha */
+    }
+
+    .profile img {
+        width: 70px;
+        /* Reduz tamanho de imagens */
+        height: 70px;
+    }
+
+    .profile figcaption {
+        font-size: 0.8rem;
+        /* Reduz tamanho do texto */
+        margin-top: 0.5rem;
+        /* Reduz margem */
+    }
+}
+
+/* Mobile Pequeno a Médio - 480px a 768px */
+@media (max-width: 768px) {
+    body {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    main {
+        max-width: 90%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        /* Aumenta um pouco comparado ao mobile pequeno */
+        margin-bottom: 2rem;
+        font-weight: 600;
+    }
+
+    .profiles {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+    }
+
+    .profile img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile figcaption {
+        font-size: 1rem;
+        margin-top: 0.8rem;
+    }
+}
+
+/* Tablet - 768px a 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+    main {
+        max-width: 95%;
+        padding: 40px 20px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .profiles {
+        gap: 1.8rem;
+        justify-content: center;
+    }
+
+    .profile img {
+        width: 130px;
+        height: 130px;
+    }
+
+    .profile figcaption {
+        font-size: 1.1rem;
+        margin-top: 1rem;
+    }
+}
+
+/* Desktop Pequeno - 1024px a 1440px */
+@media (min-width: 1025px) and (max-width: 1440px) {
+    main {
+        max-width: 800px;
+        padding: 40px;
+    }
+
+    h1 {
+        font-size: 2.8rem;
+        margin-bottom: 2.8rem;
+    }
+
+    .profiles {
+        gap: 2.2rem;
+    }
+
+    .profile img {
+        width: 130px;
+        height: 130px;
+    }
+
+    .profile figcaption {
+        font-size: 1.2rem;
+    }
+}
+
+/* Desktop Grande - 1440px+ */
+@media (min-width: 1441px) {
+    main {
+        max-width: 1000px;
+        padding: 50px;
+    }
+
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    .profiles {
+        gap: 2.5rem;
+    }
+
+    .profile img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .profile figcaption {
+        font-size: 1.3rem;
+    }
+}
+
+/* Orientação Landscape - Mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+    body {
+        height: 100vh;
+        padding: 10px 0;
+    }
+
+    main {
+        padding: 15px 20px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .profiles {
+        gap: 1rem;
+    }
+
+    .profile img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .profile figcaption {
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Tela de Intro */
+#intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+#intro.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.logo {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 4rem;
+    font-weight: bold;
+    color: #e50914; /* Vermelho Netflix */
+    text-align: center;
+    animation: introAnimation 3s ease-in-out forwards;
+}
+
+.n {
+    font-size: 6rem;
+    display: inline-block;
+    animation: nGlow 2s ease-in-out;
+}
+
+.etflix {
+    display: inline-block;
+    animation: textReveal 2s ease-in-out;
+}
+
+@keyframes introAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes nGlow {
+    0% { text-shadow: 0 0 10px #e50914; }
+    50% { text-shadow: 0 0 20px #e50914, 0 0 30px #e50914; }
+    100% { text-shadow: 0 0 10px #e50914; }
+}
+
+@keyframes textReveal {
+    0% { opacity: 0; transform: translateX(-20px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+/* Ocultar conteúdo principal inicialmente */
+main {
+    display: none;
+}
+
+main.show {
+    display: block;
+}
